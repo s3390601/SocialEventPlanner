@@ -10,13 +10,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 public class NewEventActivity extends Activity
 {
+	private EditText newTextField;
+	private EditText newVenueField;
+	private DatePicker dpicker;
+	private TimePicker tpicker;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new);
+		
+		newTextField = (EditText) findViewById(R.id.new_title_field);
+		newVenueField = (EditText) findViewById(R.id.new_venue_field);
+		dpicker = (DatePicker) findViewById(R.id.date_picker);
+		tpicker = (TimePicker) findViewById(R.id.time_picker);
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setTitle(R.string.action_add);
@@ -44,23 +55,13 @@ public class NewEventActivity extends Activity
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private long getDateFromPicker(DatePicker picker)
+	private long getDateFromPicker()
 	{
 		Calendar cal = Calendar.getInstance();
-		cal.set(picker.getYear(),picker.getMonth(),picker.getDayOfMonth());
-		
+		cal.set(dpicker.getYear(),dpicker.getMonth(),dpicker.getDayOfMonth(),
+				tpicker.getCurrentHour(),tpicker.getCurrentMinute());
+
 		return cal.getTimeInMillis();
 	}
 	
-	private String getTitleFromField()
-	{
-		EditText newTextField = (EditText) findViewById(R.id.new_title_field);
-		return newTextField.getText().toString();
-	}
-	
-	private String getVenueFromField()
-	{
-		EditText newVenueField = (EditText) findViewById(R.id.new_venue_field);
-		return newVenueField.getText().toString();
-	}
 }
