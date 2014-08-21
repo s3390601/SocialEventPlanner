@@ -9,6 +9,8 @@
 	<string name="action_save">Save</string>
 	<string name="action_delete">Delete</string>
 	<string name="action_edit">Edit</string>
+	<string name="action_cancel">Cancel</string>
+	
 	<string name="drawer_open">Nav Drawer opened</string>
 	<string name="drawer_close">Nav Drawer closed</string>
 	
@@ -21,6 +23,8 @@
 	<string name="new_venue">Venue</string>
 	<string name="new_note">Notes</string>
 	<string name="pick_attendees_button">Pick Attendees</string>
+	<string name="pick_date_button">Pick Date</string>
+	<string name="pick_time_button">Pick Time</string>
 	
 	<string name="event">Event</string>
 	<string name="title">Title:</string>
@@ -30,6 +34,8 @@
 	<string name="location">Location:</string>
 	<string name="notes">Notes:</string>
 	<string name="attendees">Attendees:</string>
+	
+	<string name="blankTitle">Title cannot be left blank</string>
 	
 	
 </resources>

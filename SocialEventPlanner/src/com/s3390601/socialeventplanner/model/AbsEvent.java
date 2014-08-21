@@ -9,8 +9,9 @@ import android.provider.ContactsContract;
 
 public abstract class AbsEvent implements Event
 {
-	private String id;
+	/* date is a long which stores both date and time */
 	private long date;
+	private String id;
 	private String title;
 	private String venue;
 	private Location location;
@@ -33,7 +34,6 @@ public abstract class AbsEvent implements Event
 		this();
 		this.date = date;
 		this.title = title;
-		this.venue = venue;
 	}
 
 	public long getDate() {
@@ -72,6 +72,15 @@ public abstract class AbsEvent implements Event
 	{
 		this.attendees.remove(attendee);
 	}
+	
+	/*public ContactsContract findAttendee()
+	{
+		for(ContactsContract cc : getAttendees())
+		{
+			if (cc == )
+		}
+		return null;
+	}*/
 	
 	public String getId() {
 		return id;

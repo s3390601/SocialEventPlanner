@@ -9,6 +9,7 @@ import java.util.TreeMap;
 
 public class EventModel
 {
+	/*stores all events*/
 	private SortedMap<Long, Event> sortedMap = new TreeMap<Long,Event>();
 	private static EventModel singletonInstance;
 	
