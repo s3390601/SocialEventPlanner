@@ -6,6 +6,8 @@ import java.util.Calendar;
 
 import com.s3390601.socialeventplanner.R;
 import com.s3390601.socialeventplanner.controller.NewEventController;
+import com.s3390601.socialeventplanner.model.ConcreteEvent;
+import com.s3390601.socialeventplanner.model.EventModel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,6 +25,7 @@ import android.widget.Button;
 
 public class NewEventActivity extends Activity
 {
+	public static final int CHANGED = 1;
 	private EditText newTextField;
 	private EditText newVenueField;
 	private DatePicker dPicker;
@@ -53,6 +56,9 @@ public class NewEventActivity extends Activity
 				pickAttendeesAlertDialog().show();
 			}
         });
+        
+        /*set time picker to 24 hour */
+        tPicker.setIs24HourView(true);
         
 
 	}
@@ -88,17 +94,16 @@ public class NewEventActivity extends Activity
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private long getDateFromPicker()
+	public long getDateFromPicker()
 	{
 
 		Calendar cal = Calendar.getInstance();
 		cal.set(dPicker.getYear(),dPicker.getMonth(),dPicker.getDayOfMonth(),
 				tPicker.getCurrentHour(),tPicker.getCurrentMinute());
-		
 		return cal.getTimeInMillis();
 	}
 	
-	/* Validate - check if title is left blank */
+	/* Validate - returns false if title is left blank */
 	public boolean checkValid()
 	{
 		if (newTextField.getText().toString().trim().length() == 0)
@@ -150,6 +155,8 @@ public class NewEventActivity extends Activity
 					newTextField.getText().toString(), 
 					newVenueField.getText().toString());
 		}
+		setResult(NewEventActivity.CHANGED);
 	}
+	
 	
 }

@@ -18,4 +18,6 @@ public interface Event {
 	public abstract String getId();
 	public abstract Location getLocation();
 	public abstract void setLocation(Location location);
+	public String getTimeAsString();
+	public String getDateAsString();
 }

@@ -2,40 +2,40 @@
 <resources>
 
     <string name="app_name">Social Event Planner</string>
-    
     <string name="action_settings">Settings</string>
-	<string name="action_add">Create event</string>
-	<string name="action_done">Done</string>
-	<string name="action_save">Save</string>
-	<string name="action_delete">Delete</string>
-	<string name="action_edit">Edit</string>
-	<string name="action_cancel">Cancel</string>
-	
-	<string name="drawer_open">Nav Drawer opened</string>
-	<string name="drawer_close">Nav Drawer closed</string>
-	
-	<string-array name="view_list">
-	    <item>List View</item>
-	    <item>Month View</item>
-	</string-array>
-	
-	<string name="new_title">Event Title</string>
-	<string name="new_venue">Venue</string>
-	<string name="new_note">Notes</string>
-	<string name="pick_attendees_button">Pick Attendees</string>
-	<string name="pick_date_button">Pick Date</string>
-	<string name="pick_time_button">Pick Time</string>
-	
-	<string name="event">Event</string>
-	<string name="title">Title:</string>
-	<string name="venue">Venue:</string>
-	<string name="date">Date:</string>
-	<string name="time">Time:</string>
-	<string name="location">Location:</string>
-	<string name="notes">Notes:</string>
-	<string name="attendees">Attendees:</string>
-	
-	<string name="blankTitle">Title cannot be left blank</string>
-	
-	
+    <string name="action_add">Create event</string>
+    <string name="action_done">Done</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_event_save">Event Saved</string>
+    
+    <string name="drawer_open">Nav Drawer opened</string>
+    <string name="drawer_close">Nav Drawer closed</string>
+    
+    <string-array name="view_list">
+        <item>List View</item>
+        <item>Month View</item>
+    </string-array>
+
+    <string name="new_title">Event Title</string>
+    <string name="new_venue">Venue</string>
+    <string name="new_note">Notes</string>
+    <string name="pick_attendees_button">Pick Attendees</string>
+    <string name="pick_date_button">Pick Date</string>
+    <string name="pick_time_button">Pick Time</string>
+    <string name="event">Event</string>
+    <string name="title">Title:</string>
+    <string name="venue">Venue:</string>
+    <string name="date">Date:</string>
+    <string name="time">Time:</string>
+    <string name="location">Location:</string>
+    <string name="notes">Notes:</string>
+    <string name="attendees">Attendees:</string>
+    <string name="blankTitle">Title cannot be left blank</string>
+    <string name="title_activity_single_event">SingleEventActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="upcoming">Upcoming Events</string>
+	<string name="view_event">Event Details</string>
 </resources>

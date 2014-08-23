@@ -37,22 +37,36 @@ public final class R {
         public static final int ic_launcher=0x7f020009;
     }
     public static final class id {
-        public static final int action_add=0x7f09000c;
-        public static final int action_delete=0x7f09000f;
-        public static final int action_edit=0x7f09000e;
-        public static final int action_save=0x7f09000d;
-        public static final int attendees_picker_button=0x7f090003;
-        public static final int date_picker=0x7f090004;
-        public static final int new_title=0x7f090008;
-        public static final int new_title_field=0x7f090001;
-        public static final int new_venue_field=0x7f090002;
-        public static final int rowDate=0x7f09000a;
-        public static final int rowTitle=0x7f090009;
-        public static final int rowVenue=0x7f09000b;
-        public static final int rows=0x7f090000;
+        public static final int action_add=0x7f09001a;
+        public static final int action_delete=0x7f09001d;
+        public static final int action_edit=0x7f09001c;
+        public static final int action_save=0x7f09001b;
+        public static final int attendees_listView=0x7f090012;
+        public static final int attendees_notes=0x7f090014;
+        public static final int attendees_picker_button=0x7f090004;
+        public static final int attendees_view_label=0x7f090011;
+        public static final int date_picker=0x7f090006;
+        public static final int date_view=0x7f09000a;
+        public static final int date_view_label=0x7f090009;
+        public static final int location_view=0x7f090010;
+        public static final int location_view_label=0x7f09000f;
+        public static final int main_linear=0x7f090000;
+        public static final int new_title=0x7f090016;
+        public static final int new_title_field=0x7f090002;
+        public static final int new_venue_field=0x7f090003;
+        public static final int notes_view=0x7f090015;
+        public static final int notes_view_label=0x7f090013;
+        public static final int rowDate=0x7f090018;
+        public static final int rowTitle=0x7f090017;
+        public static final int rowVenue=0x7f090019;
         public static final int time_picker=0x7f090005;
-        public static final int title_view=0x7f090007;
-        public static final int title_view_label=0x7f090006;
+        public static final int time_view=0x7f09000c;
+        public static final int time_view_label=0x7f09000b;
+        public static final int title_view=0x7f090008;
+        public static final int title_view_label=0x7f090007;
+        public static final int upcoming_label=0x7f090001;
+        public static final int venue_view=0x7f09000e;
+        public static final int venue_view_label=0x7f09000d;
     }
     public static final class layout {
         public static final int activity_list_view=0x7f030000;
@@ -72,26 +86,31 @@ public final class R {
         public static final int action_delete=0x7f050005;
         public static final int action_done=0x7f050003;
         public static final int action_edit=0x7f050006;
+        public static final int action_event_save=0x7f050008;
         public static final int action_save=0x7f050004;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
-        public static final int attendees=0x7f050017;
-        public static final int blankTitle=0x7f050018;
-        public static final int date=0x7f050013;
-        public static final int drawer_close=0x7f050009;
-        public static final int drawer_open=0x7f050008;
-        public static final int event=0x7f050010;
-        public static final int location=0x7f050015;
-        public static final int new_note=0x7f05000c;
-        public static final int new_title=0x7f05000a;
-        public static final int new_venue=0x7f05000b;
-        public static final int notes=0x7f050016;
-        public static final int pick_attendees_button=0x7f05000d;
-        public static final int pick_date_button=0x7f05000e;
-        public static final int pick_time_button=0x7f05000f;
-        public static final int time=0x7f050014;
-        public static final int title=0x7f050011;
-        public static final int venue=0x7f050012;
+        public static final int attendees=0x7f050018;
+        public static final int blankTitle=0x7f050019;
+        public static final int date=0x7f050014;
+        public static final int drawer_close=0x7f05000a;
+        public static final int drawer_open=0x7f050009;
+        public static final int event=0x7f050011;
+        public static final int hello_world=0x7f05001b;
+        public static final int location=0x7f050016;
+        public static final int new_note=0x7f05000d;
+        public static final int new_title=0x7f05000b;
+        public static final int new_venue=0x7f05000c;
+        public static final int notes=0x7f050017;
+        public static final int pick_attendees_button=0x7f05000e;
+        public static final int pick_date_button=0x7f05000f;
+        public static final int pick_time_button=0x7f050010;
+        public static final int time=0x7f050015;
+        public static final int title=0x7f050012;
+        public static final int title_activity_single_event=0x7f05001a;
+        public static final int upcoming=0x7f05001c;
+        public static final int venue=0x7f050013;
+        public static final int view_event=0x7f05001d;
     }
     public static final class style {
         /** 
@@ -113,7 +132,6 @@ public final class R {
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
     
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 

@@ -1,5 +1,7 @@
 package com.s3390601.socialeventplanner.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -34,6 +36,7 @@ public abstract class AbsEvent implements Event
 		this();
 		this.date = date;
 		this.title = title;
+		this.venue = venue;
 	}
 
 	public long getDate() {
@@ -96,5 +99,16 @@ public abstract class AbsEvent implements Event
 		this.location=loc;
 	}
 	
+	public String getDateAsString()
+	{
+		DateFormat df = new SimpleDateFormat("dd MMMM yyyy");
+		return df.format(this.date);
+	}
+	
+	public String getTimeAsString()
+	{
+		DateFormat df = new SimpleDateFormat("HH:mm");
+		return df.format(this.date);
+	}
 	
 }

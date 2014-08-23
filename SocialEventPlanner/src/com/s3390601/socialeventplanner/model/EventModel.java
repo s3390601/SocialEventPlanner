@@ -9,7 +9,12 @@ import java.util.TreeMap;
 
 public class EventModel
 {
-	/*stores all events*/
+	public static final String EVENT_ID_EXTRA = "eventIDExtra";
+
+	/*stores all events
+	 * I used a single sorted map rather than 2 maps like the workshop
+	 * because there won't be too many events, therefore, we can
+	 * get eventID by a foreach loop each time ID is needed.*/
 	private SortedMap<Long, Event> sortedMap = new TreeMap<Long,Event>();
 	private static EventModel singletonInstance;
 	
@@ -37,7 +42,7 @@ public class EventModel
 		return singletonInstance;
 	}
 	
-	public Event getEventfromID(String id)
+	public Event findEventByID(String id)
 	{
 		for (Event e : sortedMap.values())
 		{
