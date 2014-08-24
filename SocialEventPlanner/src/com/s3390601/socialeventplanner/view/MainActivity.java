@@ -8,7 +8,6 @@ import com.s3390601.socialeventplanner.view.model.EventAdapter;
 
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;

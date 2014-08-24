@@ -1,18 +1,19 @@
 package com.s3390601.socialeventplanner.view;
 
 import com.s3390601.socialeventplanner.R;
-import com.s3390601.socialeventplanner.R.id;
-import com.s3390601.socialeventplanner.R.layout;
-import com.s3390601.socialeventplanner.R.menu;
 import com.s3390601.socialeventplanner.model.ConcreteEvent;
 import com.s3390601.socialeventplanner.model.Event;
 import com.s3390601.socialeventplanner.model.EventModel;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SingleEventActivity extends Activity {
 
@@ -36,12 +37,7 @@ public class SingleEventActivity extends Activity {
 		locationView = (TextView) findViewById(R.id.location_view);
 		notesView = (TextView) findViewById(R.id.notes_view);
 		
-		/* set text fields */
-		titleView.setText(event.getTitle());
-		dateView.setText(event.getDateAsString());
-		timeView.setText(event.getTimeAsString());
-		venueView.setText(event.getVenue());
-		notesView.setText(((ConcreteEvent) event).getNotes());
+		loadValues();
 		
 	}
 
@@ -60,9 +56,55 @@ public class SingleEventActivity extends Activity {
 		int id = item.getItemId();
 		switch(id)
 		{
-			
-			default: break;
+			case R.id.action_delete:
+				confirmDelete();
+				break;
+			case R.id.action_edit:
+				Intent myIntent = new Intent(this,NewEventActivity.class);
+				myIntent.putExtra(EventModel.EVENT_ID_EXTRA, event.getId());
+				startActivityForResult(myIntent, 0);
+			default: 
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void confirmDelete()
+	{
+		new AlertDialog.Builder(SingleEventActivity.this)
+	        .setIcon(R.drawable.ic_action_warning)
+	        .setTitle(R.string.confirm_delete)
+	        .setPositiveButton(android.R.string.yes, 
+	        		new DialogInterface.OnClickListener()
+	        		{
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							EventModel.getSingletonInstance().delEvent(event);
+							Toast.makeText(getApplicationContext(), R.string.action_event_delete, Toast.LENGTH_SHORT).show();
+							finish();
+						}
+	        		}
+	        )
+	        .setNegativeButton(android.R.string.no,null)
+	        .create().show();
+	}
+	
+	public void loadValues()
+	{
+		/* set text fields */
+		titleView.setText(event.getTitle());
+		dateView.setText(event.getDateAsString());
+		timeView.setText(event.getTimeAsString());
+		venueView.setText(event.getVenue());
+		notesView.setText(((ConcreteEvent) event).getNotes());
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		loadValues();
+	}
+	
+	
 }

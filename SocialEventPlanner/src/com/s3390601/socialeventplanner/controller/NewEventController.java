@@ -1,15 +1,9 @@
 package com.s3390601.socialeventplanner.controller;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.s3390601.socialeventplanner.R;
 import com.s3390601.socialeventplanner.model.ConcreteEvent;
 import com.s3390601.socialeventplanner.model.Event;
 import com.s3390601.socialeventplanner.model.EventModel;
-import com.s3390601.socialeventplanner.view.NewEventActivity;
 
 
 public class NewEventController

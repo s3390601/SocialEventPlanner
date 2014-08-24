@@ -10,7 +10,9 @@
     <string name="action_edit">Edit</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_event_save">Event Saved</string>
+    <string name="action_event_delete">Event Deleted</string>
     
+    <string name="confirm_delete">Are you sure you want to delete this event?</string>
     <string name="drawer_open">Nav Drawer opened</string>
     <string name="drawer_close">Nav Drawer closed</string>
     

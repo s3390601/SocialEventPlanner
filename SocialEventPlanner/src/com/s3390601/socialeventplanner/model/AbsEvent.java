@@ -76,15 +76,6 @@ public abstract class AbsEvent implements Event
 		this.attendees.remove(attendee);
 	}
 	
-	/*public ContactsContract findAttendee()
-	{
-		for(ContactsContract cc : getAttendees())
-		{
-			if (cc == )
-		}
-		return null;
-	}*/
-	
 	public String getId() {
 		return id;
 	}

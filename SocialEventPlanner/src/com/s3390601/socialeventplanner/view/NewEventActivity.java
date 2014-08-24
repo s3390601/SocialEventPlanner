@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 import com.s3390601.socialeventplanner.R;
 import com.s3390601.socialeventplanner.controller.NewEventController;
-import com.s3390601.socialeventplanner.model.ConcreteEvent;
+import com.s3390601.socialeventplanner.model.Event;
 import com.s3390601.socialeventplanner.model.EventModel;
 
 import android.app.Activity;
@@ -20,7 +20,6 @@ import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 import android.widget.Button;
 
 public class NewEventActivity extends Activity
@@ -31,6 +30,7 @@ public class NewEventActivity extends Activity
 	private DatePicker dPicker;
 	private TimePicker tPicker;
 	private Button pickAttendeesBtn;
+	private Event event;
 	
 	
 	@Override
@@ -44,8 +44,8 @@ public class NewEventActivity extends Activity
 		tPicker = (TimePicker) findViewById(R.id.time_picker);
 		pickAttendeesBtn = (Button) findViewById(R.id.attendees_picker_button);
 		
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(false);
+        getActionBar().setHomeButtonEnabled(false);
         getActionBar().setTitle(R.string.action_add);
         
         /* set listeners */
@@ -60,6 +60,19 @@ public class NewEventActivity extends Activity
         /*set time picker to 24 hour */
         tPicker.setIs24HourView(true);
         
+        /*Check if editing existing event*/
+        event = EventModel.getSingletonInstance().findEventByID(
+				getIntent().getStringExtra(EventModel.EVENT_ID_EXTRA));
+        if(event != null)
+        {
+        	newTextField.setText(event.getTitle());
+        	newVenueField.setText(event.getVenue());
+        	Calendar cal = Calendar.getInstance();
+        	cal.setTimeInMillis(event.getDate());
+        	dPicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
+        	tPicker.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
+        	tPicker.setCurrentMinute(cal.get(Calendar.MINUTE));
+        }
 
 	}
 
@@ -74,10 +87,6 @@ public class NewEventActivity extends Activity
 		int id = item.getItemId();
 		switch(id)
 		{
-			case android.R.id.home:
-				Toast.makeText(getApplicationContext(), R.string.action_cancel, Toast.LENGTH_LONG);
-				finish();
-				break;
 			case R.id.action_save:
 				if (checkValid())
 				{
@@ -141,19 +150,30 @@ public class NewEventActivity extends Activity
 	
 	public void saveEvent()
 	{
-		/* if event has a venue */
-		if (newVenueField.getText().toString().trim().length() == 0)
+		/* In case of new event */
+		if (event == null)
 		{
-			NewEventController.getSingletonInstance().addEvent(
-					getDateFromPicker(),
-					newTextField.getText().toString());
+			/* if event has a venue */
+			if (newVenueField.getText().toString().trim().length() == 0)
+			{
+				NewEventController.getSingletonInstance().addEvent(
+						getDateFromPicker(),
+						newTextField.getText().toString());
+			}
+			else
+			{
+				NewEventController.getSingletonInstance().addEvent(
+						getDateFromPicker(),
+						newTextField.getText().toString(), 
+						newVenueField.getText().toString());
+			}
 		}
+		/* In case of editing existing event */
 		else
 		{
-			NewEventController.getSingletonInstance().addEvent(
-					getDateFromPicker(),
-					newTextField.getText().toString(), 
-					newVenueField.getText().toString());
+			event.setTitle(newTextField.getText().toString());
+			event.setVenue(newVenueField.getText().toString());
+			event.setDate(getDateFromPicker());			
 		}
 		setResult(NewEventActivity.CHANGED);
 	}
