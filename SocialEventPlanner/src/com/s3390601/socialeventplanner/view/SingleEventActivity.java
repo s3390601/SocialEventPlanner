@@ -79,9 +79,11 @@ public class SingleEventActivity extends Activity {
 	        		{
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							EventModel.getSingletonInstance().delEvent(event);
-							Toast.makeText(getApplicationContext(), R.string.action_event_delete, Toast.LENGTH_SHORT).show();
-							finish();
+							if (EventModel.getSingletonInstance().delEvent(event))
+							{
+								Toast.makeText(getApplicationContext(), R.string.action_event_delete, Toast.LENGTH_SHORT).show();
+								finish();
+							}
 						}
 	        		}
 	        )

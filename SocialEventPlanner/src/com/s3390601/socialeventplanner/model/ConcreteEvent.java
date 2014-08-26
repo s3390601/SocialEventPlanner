@@ -13,11 +13,6 @@ public class ConcreteEvent extends AbsEvent{
 		super(date,title);
 	}
 	
-	public ConcreteEvent(long date, String title, String venue)
-	{
-		super(date,title,venue);
-	}
-
 	public String getNotes() {
 		return notes;
 	}

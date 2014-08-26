@@ -116,8 +116,8 @@ public class MainActivity extends ListActivity {
 	public void testMethod()
 	{
 		EventModel e = EventModel.getSingletonInstance();
-		e.addEvent(new ConcreteEvent(2000000000,"Party","Mauritius"));
-		e.addEvent(new ConcreteEvent(1990000000,"Moar Party","Cape Town"));
-		e.addEvent(new ConcreteEvent(2010000000,"Even Moar Party","Australia"));
+		e.addEvent(new ConcreteEvent(2000000000,"Party"));
+		e.addEvent(new ConcreteEvent(1990000000,"More Party"));
+		e.addEvent(new ConcreteEvent(2010000000,"Even More Party"));
 	}
 }

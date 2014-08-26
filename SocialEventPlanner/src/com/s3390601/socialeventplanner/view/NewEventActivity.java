@@ -5,13 +5,14 @@ import java.util.Calendar;
 
 
 import com.s3390601.socialeventplanner.R;
-import com.s3390601.socialeventplanner.controller.NewEventController;
+import com.s3390601.socialeventplanner.model.ConcreteEvent;
 import com.s3390601.socialeventplanner.model.Event;
 import com.s3390601.socialeventplanner.model.EventModel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,12 +22,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class NewEventActivity extends Activity
 {
 	public static final int CHANGED = 1;
 	private EditText newTextField;
 	private EditText newVenueField;
+	private EditText newNotesField;
 	private DatePicker dPicker;
 	private TimePicker tPicker;
 	private Button pickAttendeesBtn;
@@ -40,6 +43,7 @@ public class NewEventActivity extends Activity
 
 		newTextField = (EditText) findViewById(R.id.new_title_field);
 		newVenueField = (EditText) findViewById(R.id.new_venue_field);
+		newNotesField = (EditText) findViewById(R.id.new_notes_field);
 		dPicker = (DatePicker) findViewById(R.id.date_picker);
 		tPicker = (TimePicker) findViewById(R.id.time_picker);
 		pickAttendeesBtn = (Button) findViewById(R.id.attendees_picker_button);
@@ -67,6 +71,7 @@ public class NewEventActivity extends Activity
         {
         	newTextField.setText(event.getTitle());
         	newVenueField.setText(event.getVenue());
+        	newNotesField.setText(((ConcreteEvent) event).getNotes());
         	Calendar cal = Calendar.getInstance();
         	cal.setTimeInMillis(event.getDate());
         	dPicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
@@ -88,7 +93,8 @@ public class NewEventActivity extends Activity
 		switch(id)
 		{
 			case R.id.action_save:
-				if (checkValid())
+				/* checks if title is not blank */
+				if (newTextField.getText().toString().trim().length() > 0)
 				{
 					saveEvent();
 					finish();
@@ -112,16 +118,7 @@ public class NewEventActivity extends Activity
 		return cal.getTimeInMillis();
 	}
 	
-	/* Validate - returns false if title is left blank */
-	public boolean checkValid()
-	{
-		if (newTextField.getText().toString().trim().length() == 0)
-		{
-			return false;
-		}
-		return true;
-	}
-	
+
 	/* method to create and return an alert dialog 
 	 * in case of title field is blank */
 	public AlertDialog blankTitleAlertDialog()
@@ -142,6 +139,7 @@ public class NewEventActivity extends Activity
 	 * to get Attendees from contacts */
 	public AlertDialog pickAttendeesAlertDialog()
 	{
+		
 		return new AlertDialog.Builder(NewEventActivity.this)
         .setIcon(R.drawable.ic_action_add_group)
         .setTitle(R.string.attendees)
@@ -153,19 +151,20 @@ public class NewEventActivity extends Activity
 		/* In case of new event */
 		if (event == null)
 		{
-			/* if event has a venue */
-			if (newVenueField.getText().toString().trim().length() == 0)
+			event = new ConcreteEvent(getDateFromPicker(),
+					newTextField.getText().toString());
+			EventModel.getSingletonInstance().addEvent(event);
+
+			/* Set Venue */
+			if (newVenueField.getText().toString().trim().length() > 0)
 			{
-				NewEventController.getSingletonInstance().addEvent(
-						getDateFromPicker(),
-						newTextField.getText().toString());
+				event.setVenue(newVenueField.getText().toString());
+				
 			}
-			else
+			/* Set Notes */
+			if (newNotesField.getText().toString().trim().length() > 0)
 			{
-				NewEventController.getSingletonInstance().addEvent(
-						getDateFromPicker(),
-						newTextField.getText().toString(), 
-						newVenueField.getText().toString());
+				((ConcreteEvent)event).setNotes(newNotesField.getText().toString());
 			}
 		}
 		/* In case of editing existing event */
@@ -173,7 +172,8 @@ public class NewEventActivity extends Activity
 		{
 			event.setTitle(newTextField.getText().toString());
 			event.setVenue(newVenueField.getText().toString());
-			event.setDate(getDateFromPicker());			
+			((ConcreteEvent)event).setNotes(newNotesField.getText().toString());
+			event.setDate(getDateFromPicker());
 		}
 		setResult(NewEventActivity.CHANGED);
 	}

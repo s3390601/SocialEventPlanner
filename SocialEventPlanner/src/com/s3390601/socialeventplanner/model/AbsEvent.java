@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import android.location.Address;
 import android.location.Location;
 import android.provider.ContactsContract;
 
@@ -16,7 +17,7 @@ public abstract class AbsEvent implements Event
 	private String id;
 	private String title;
 	private String venue;
-	private Location location;
+	private Address location;
 	private List<ContactsContract> attendees;
 	
 	public AbsEvent()
@@ -30,13 +31,6 @@ public abstract class AbsEvent implements Event
 		this();
 		this.date=date;
 		this.title=title;
-	}
-	
-	public AbsEvent(long date, String title, String venue) {
-		this();
-		this.date = date;
-		this.title = title;
-		this.venue = venue;
 	}
 
 	public long getDate() {
@@ -80,12 +74,12 @@ public abstract class AbsEvent implements Event
 		return id;
 	}
 	
-	public Location getLocation()
+	public Address getLocation()
 	{
 		return this.location;
 	}
 	
-	public void setLocation(Location loc)
+	public void setLocation(Address loc)
 	{
 		this.location=loc;
 	}
