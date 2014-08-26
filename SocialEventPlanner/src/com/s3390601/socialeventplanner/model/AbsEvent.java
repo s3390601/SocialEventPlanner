@@ -18,12 +18,12 @@ public abstract class AbsEvent implements Event
 	private String title;
 	private String venue;
 	private Address location;
-	private List<ContactsContract> attendees;
+	private List<String> attendees;
 	
 	public AbsEvent()
 	{
 		this.id = UUID.randomUUID().toString();
-		attendees = new ArrayList<ContactsContract>();
+		attendees = new ArrayList<String>();
 	}
 	
 	public AbsEvent(long date, String title)
@@ -57,12 +57,12 @@ public abstract class AbsEvent implements Event
 		this.venue = venue;
 	}
 	
-	public List<ContactsContract> getAttendees() {
+	public List<String> getAttendees() {
 		return attendees;
 	}
 	
-	public void addAttendee(ContactsContract attendee) {
-		this.attendees.add(attendee);
+	public void setAttendees(List<String> names) {
+		this.attendees = names;
 	}
 	
 	public void removeAttendee(ContactsContract attendee)

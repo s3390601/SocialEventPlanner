@@ -40,4 +40,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="upcoming">Upcoming Events</string>
 	<string name="view_event">Event Details</string>
+	<string name="contact_chooser">Choose Contacts</string>
+	<string name="contact">contact</string>
+	<string name="chosen_names">names</string>
 </resources>

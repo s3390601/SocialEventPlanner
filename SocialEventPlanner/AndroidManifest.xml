@@ -33,6 +33,10 @@
             android:name="com.s3390601.socialeventplanner.view.SingleEventActivity"
             android:label="@string/title_activity_single_event" >
         </activity>
+          <activity
+            android:name="com.s3390601.socialeventplanner.view.ContactChooser"
+            android:label="@string/contact_chooser" >
+        </activity>
     </application>
 
 </manifest>

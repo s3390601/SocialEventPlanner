@@ -17,7 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import android.app.ListActivity;
 
-	;
+	
 public class MainActivity extends ListActivity {
 
 	private ArrayAdapter<Event> eventAdapter;

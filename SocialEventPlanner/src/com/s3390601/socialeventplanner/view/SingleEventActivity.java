@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ public class SingleEventActivity extends Activity {
 
 	private Event event;
 	private TextView titleView,dateView,timeView,venueView,locationView,notesView;
+	private ListView listView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class SingleEventActivity extends Activity {
 		venueView = (TextView) findViewById(R.id.venue_view);
 		locationView = (TextView) findViewById(R.id.location_view);
 		notesView = (TextView) findViewById(R.id.notes_view);
-		
+		listView = (ListView) findViewById(R.id.attendees_listView);
 		loadValues();
 		
 	}
@@ -99,6 +102,12 @@ public class SingleEventActivity extends Activity {
 		timeView.setText(event.getTimeAsString());
 		venueView.setText(event.getVenue());
 		notesView.setText(((ConcreteEvent) event).getNotes());
+
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this, 
+                android.R.layout.simple_list_item_1,
+                event.getAttendees());
+		listView.setAdapter(arrayAdapter);
 	}
 
 	@Override

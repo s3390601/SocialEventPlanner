@@ -14,8 +14,8 @@ public interface Event {
 	public abstract void setTitle(String title);
 	public abstract String getVenue();
 	public abstract void setVenue(String venue);
-	public abstract List<ContactsContract> getAttendees();
-	public abstract void addAttendee(ContactsContract attendee);
+	public abstract List<String> getAttendees();
+	public abstract void setAttendees(List<String> names);
 	public abstract String getId();
 	public abstract Address getLocation();
 	public abstract void setLocation(Address location);

@@ -1,6 +1,8 @@
 package com.s3390601.socialeventplanner.view;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 
@@ -12,8 +14,13 @@ import com.s3390601.socialeventplanner.model.EventModel;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +41,7 @@ public class NewEventActivity extends Activity
 	private TimePicker tPicker;
 	private Button pickAttendeesBtn;
 	private Event event;
+	private ArrayList<String> names;
 	
 	
 	@Override
@@ -47,17 +55,18 @@ public class NewEventActivity extends Activity
 		dPicker = (DatePicker) findViewById(R.id.date_picker);
 		tPicker = (TimePicker) findViewById(R.id.time_picker);
 		pickAttendeesBtn = (Button) findViewById(R.id.attendees_picker_button);
-		
+		final Intent myIntent = new Intent(this,ContactChooser.class);
 		getActionBar().setDisplayHomeAsUpEnabled(false);
         getActionBar().setHomeButtonEnabled(false);
         getActionBar().setTitle(R.string.action_add);
         
+        names = new ArrayList<String>();
         /* set listeners */
         pickAttendeesBtn.setOnClickListener(new OnClickListener()
         {
 			@Override
 			public void onClick(View v) {
-				pickAttendeesAlertDialog().show();
+				startActivityForResult(myIntent, 0);
 			}
         });
         
@@ -77,7 +86,9 @@ public class NewEventActivity extends Activity
         	dPicker.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
         	tPicker.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
         	tPicker.setCurrentMinute(cal.get(Calendar.MINUTE));
+        	names = (ArrayList<String>) event.getAttendees();
         }
+      
 
 	}
 
@@ -135,16 +146,6 @@ public class NewEventActivity extends Activity
         .create();
 	}
 	
-	/* method to create and return an alert dialog 
-	 * to get Attendees from contacts */
-	public AlertDialog pickAttendeesAlertDialog()
-	{
-		
-		return new AlertDialog.Builder(NewEventActivity.this)
-        .setIcon(R.drawable.ic_action_add_group)
-        .setTitle(R.string.attendees)
-        .create();
-	}
 	
 	public void saveEvent()
 	{
@@ -166,6 +167,11 @@ public class NewEventActivity extends Activity
 			{
 				((ConcreteEvent)event).setNotes(newNotesField.getText().toString());
 			}
+			/* Add Attendees */
+			if (names != null)
+			{
+				event.setAttendees(names);
+			}
 		}
 		/* In case of editing existing event */
 		else
@@ -174,8 +180,19 @@ public class NewEventActivity extends Activity
 			event.setVenue(newVenueField.getText().toString());
 			((ConcreteEvent)event).setNotes(newNotesField.getText().toString());
 			event.setDate(getDateFromPicker());
+			event.setAttendees(names);
 		}
 		setResult(NewEventActivity.CHANGED);
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode,Intent data)
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode == RESULT_OK)
+		{
+			Bundle bundle = data.getExtras();
+			names = bundle.getStringArrayList("NAMES");
+		}
 	}
 	
 	

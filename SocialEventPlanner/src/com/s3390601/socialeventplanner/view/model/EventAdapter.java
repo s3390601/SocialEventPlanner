@@ -21,16 +21,12 @@ public class EventAdapter extends ArrayAdapter<Event>
 	private LayoutInflater inflater = (LayoutInflater) getContext()
 	         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	
-	 private static class ViewContentHolder implements OnClickListener
+	 private static class ViewContentHolder
 	   {
 	      private TextView titleText;
 	      private TextView dateText;
 	      private TextView venueText;
 
-		@Override
-		public void onClick(View v) {
-
-		}
 	   }
 
 	/* Constructor */
