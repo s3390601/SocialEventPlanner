@@ -54,6 +54,11 @@ public class ContactChooser extends ListActivity
 		setListAdapter(listAdapter);
 		listView = getListView();        
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        /* Select All */
+        for (int k=0; k<listView.getCount(); k++)
+        {
+        	listView.setItemChecked(k, true);
+        }
 	}
     
 	private Cursor getContacts() {

@@ -42,10 +42,9 @@ public class MainActivity extends ListActivity {
             	switch (itemPosition)
             	{
             		case 0:
-            			Toast.makeText(getApplicationContext(), "ListView", Toast.LENGTH_SHORT).show();
             			break;
             		case 1:
-            			Toast.makeText(getApplicationContext(), "MonthView", Toast.LENGTH_SHORT).show();
+            			startMonthView();
             			break;
             	}
                 return false;
@@ -64,6 +63,12 @@ public class MainActivity extends ListActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         
         return super.onPrepareOptionsMenu(menu);
+    }
+    
+    public void startMonthView()
+    {
+    	Intent myIntent = new Intent(this,MonthView.class);
+		startActivity(myIntent);
     }
 
     @Override
