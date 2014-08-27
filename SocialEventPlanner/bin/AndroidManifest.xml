@@ -37,9 +37,10 @@
             android:name=".view.ContactChooser"
             android:label="@string/contact_chooser" >
         </activity>
+
         <activity
-            android:name="com.s3390601.socialeventplanner.view.MonthView"
-            android:label="@string/title_activity_month_view" >
+            android:name="com.s3390601.socialeventplanner.view.MonthActivity"
+            android:label="@string/title_activity_month" >
         </activity>
     </application>
 

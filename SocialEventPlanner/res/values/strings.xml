@@ -19,8 +19,7 @@
         <item>List View</item>
         <item>Month View</item>
     </string-array>
-    
-    <string-array name="days_in_week" >
+    <string-array name="days_in_week">
         <item>Sun</item>
         <item>Mon</item>
         <item>Tue</item>
@@ -53,6 +52,8 @@
     <string name="contact">contact</string>
     <string name="chosen_names">names</string>
     <string name="title_activity_month_view">Month View</string>
-	<string name="latitude">Latitude</string>
-	<string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="title_activity_month">MonthActivity</string>
+
 </resources>

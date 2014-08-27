@@ -28,6 +28,7 @@ public class SingleEventActivity extends Activity {
 		setContentView(R.layout.activity_single_event);
 		
 		getActionBar().setTitle(R.string.view_event);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		/* get event instance */
 		event = EventModel.getSingletonInstance().findEventByID(
 				getIntent().getStringExtra(EventModel.EVENT_ID_EXTRA));
@@ -66,6 +67,8 @@ public class SingleEventActivity extends Activity {
 				Intent myIntent = new Intent(this,NewEventActivity.class);
 				myIntent.putExtra(EventModel.EVENT_ID_EXTRA, event.getId());
 				startActivityForResult(myIntent, 0);
+			case android.R.id.home:
+				finish();
 			default: 
 				break;
 		}

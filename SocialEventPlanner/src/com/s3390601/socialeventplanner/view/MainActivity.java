@@ -39,12 +39,6 @@ public class MainActivity extends ListActivity {
         return super.onPrepareOptionsMenu(menu);
     }
     
-    public void startMonthView()
-    {
-    	Intent myIntent = new Intent(this,MonthView.class);
-		startActivity(myIntent);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action buttons
@@ -56,7 +50,7 @@ public class MainActivity extends ListActivity {
     			break;
     			
         case R.id.action_month_view:
-        		Intent intent = new Intent(this,MonthView.class);
+        		Intent intent = new Intent(this,MonthActivity.class);
         		startActivity(intent);
         		break;
         default:
@@ -100,8 +94,9 @@ public class MainActivity extends ListActivity {
 	public void testMethod()
 	{
 		EventModel e = EventModel.getSingletonInstance();
-		e.addEvent(new ConcreteEvent(2000000000,"Test Event 1"));
-		e.addEvent(new ConcreteEvent(1990000000,"Test Event 2"));
-		e.addEvent(new ConcreteEvent(2010000000,"Test Event 3"));
+		Event test = new ConcreteEvent(2000000000,"Birthday");
+		test.setVenue("RMIT University");
+		test.setLocation("150", "250");
+		e.addEvent(test);
 	}
 }
