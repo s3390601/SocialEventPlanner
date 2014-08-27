@@ -122,13 +122,34 @@
             android:layout_alignTop="@id/location_view_label"
             android:layout_toRightOf="@id/attendees_view_label"
             />
+      
+   	<TextView
+   	    	style="@style/TitlesStyle"
+            android:id="@+id/notes_view_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location_view_label"
+            android:layout_marginLeft="7dp"
+            android:labelFor="@+id/notes_view"
+            android:text="@string/notes"
+             />
 
+	<TextView
+	    	style="@style/ItemStyle"
+            android:id="@+id/notes_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@id/notes_view_label"
+            android:layout_toRightOf="@id/attendees_view_label"
+            />
 	<TextView
 	    	style="@style/TitlesStyle"
             android:id="@+id/attendees_view_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/location_view"
+            android:layout_below="@+id/notes_view"
             
             android:layout_marginLeft="7dp"
             android:labelFor="@+id/attendees_listView"
@@ -142,28 +163,6 @@
           android:layout_alignLeft="@+id/attendees_view_label"
           android:layout_below="@+id/attendees_view_label" >
       </ListView>
-      
-   	<TextView
-   	    	style="@style/TitlesStyle"
-            android:id="@+id/notes_view_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/attendees_listView"
-            android:layout_marginLeft="7dp"
-            android:labelFor="@+id/attendees_notes"
-            android:text="@string/notes"
-             />
 
-	<TextView
-	    	style="@style/ItemStyle"
-            android:id="@+id/notes_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_alignTop="@id/notes_view_label"
-            android:layout_toRightOf="@id/attendees_view_label"
-            android:ems="10"
-            />
 
 </RelativeLayout>
