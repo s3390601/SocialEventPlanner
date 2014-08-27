@@ -6,15 +6,12 @@ import com.s3390601.socialeventplanner.model.Event;
 import com.s3390601.socialeventplanner.model.EventModel;
 import com.s3390601.socialeventplanner.view.model.EventAdapter;
 
-import android.app.ActionBar;
-import android.app.ActionBar.OnNavigationListener;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 import android.app.ListActivity;
 
 	
@@ -26,31 +23,8 @@ public class MainActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_view);
         testMethod();
-		getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         getActionBar().setDisplayHomeAsUpEnabled(false);
-        getActionBar().setTitle(null);
-        
-        /* Setting up Navigation Spinner on action bar */
-        String[] viewlist = getResources().getStringArray(R.array.view_list);
-        ArrayAdapter<String> views = new ArrayAdapter<String>(getBaseContext(), 
-        		android.R.layout.simple_spinner_dropdown_item, 
-        		viewlist);
-        
-        ActionBar.OnNavigationListener nl = new OnNavigationListener(){
-            public boolean onNavigationItemSelected(int itemPosition, long itemId) 
-            {
-            	switch (itemPosition)
-            	{
-            		case 0:
-            			break;
-            		case 1:
-            			startMonthView();
-            			break;
-            	}
-                return false;
-            }
-        };
-        getActionBar().setListNavigationCallbacks(views,nl);
+  
         
         /* Populate list */
         eventAdapter = new EventAdapter(this,0, EventModel.getSingletonInstance().getAllEvents());
@@ -80,6 +54,11 @@ public class MainActivity extends ListActivity {
         		Intent myIntent = new Intent(this,NewEventActivity.class);
         		startActivityForResult(myIntent, 0); 
     			break;
+    			
+        case R.id.action_month_view:
+        		Intent intent = new Intent(this,MonthView.class);
+        		startActivity(intent);
+        		break;
         default:
         		break;
         }
@@ -114,15 +93,15 @@ public class MainActivity extends ListActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.listview_menu, menu);
 		return true;
 	}
 	
 	public void testMethod()
 	{
 		EventModel e = EventModel.getSingletonInstance();
-		e.addEvent(new ConcreteEvent(2000000000,"Party"));
-		e.addEvent(new ConcreteEvent(1990000000,"More Party"));
-		e.addEvent(new ConcreteEvent(2010000000,"Even More Party"));
+		e.addEvent(new ConcreteEvent(2000000000,"Test Event 1"));
+		e.addEvent(new ConcreteEvent(1990000000,"Test Event 2"));
+		e.addEvent(new ConcreteEvent(2010000000,"Test Event 3"));
 	}
 }

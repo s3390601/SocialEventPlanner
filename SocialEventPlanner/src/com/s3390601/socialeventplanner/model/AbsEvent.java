@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import android.location.Address;
-import android.location.Location;
 import android.provider.ContactsContract;
 
 public abstract class AbsEvent implements Event
@@ -17,7 +15,7 @@ public abstract class AbsEvent implements Event
 	private String id;
 	private String title;
 	private String venue;
-	private Address location;
+	private String location;
 	private List<String> attendees;
 	
 	public AbsEvent()
@@ -74,14 +72,14 @@ public abstract class AbsEvent implements Event
 		return id;
 	}
 	
-	public Address getLocation()
+	public String getLocation()
 	{
 		return this.location;
 	}
 	
-	public void setLocation(Address loc)
+	public void setLocation(String lat, String lon)
 	{
-		this.location=loc;
+		this.location=lat+" "+lon;
 	}
 	
 	public String getDateAsString()

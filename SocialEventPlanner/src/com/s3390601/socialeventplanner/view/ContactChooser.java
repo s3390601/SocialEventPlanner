@@ -6,7 +6,6 @@
 package com.s3390601.socialeventplanner.view;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.s3390601.socialeventplanner.R;
 
@@ -20,7 +19,6 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;

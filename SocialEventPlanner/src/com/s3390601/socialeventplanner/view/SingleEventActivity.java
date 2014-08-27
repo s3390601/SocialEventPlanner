@@ -102,7 +102,7 @@ public class SingleEventActivity extends Activity {
 		timeView.setText(event.getTimeAsString());
 		venueView.setText(event.getVenue());
 		notesView.setText(((ConcreteEvent) event).getNotes());
-
+		locationView.setText(event.getLocation());
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this, 
                 android.R.layout.simple_list_item_1,

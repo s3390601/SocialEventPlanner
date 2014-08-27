@@ -19,6 +19,16 @@
         <item>List View</item>
         <item>Month View</item>
     </string-array>
+    
+    <string-array name="days_in_week" >
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
 
     <string name="new_title">Event Title</string>
     <string name="new_venue">Venue</string>
@@ -42,6 +52,7 @@
     <string name="contact_chooser">Choose Contacts</string>
     <string name="contact">contact</string>
     <string name="chosen_names">names</string>
-    <string name="title_activity_month_view">MonthView</string>
-
+    <string name="title_activity_month_view">Month View</string>
+	<string name="latitude">Latitude</string>
+	<string name="longitude">Longitude</string>
 </resources>

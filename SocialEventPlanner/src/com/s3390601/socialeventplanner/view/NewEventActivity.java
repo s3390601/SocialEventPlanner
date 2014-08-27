@@ -2,7 +2,6 @@ package com.s3390601.socialeventplanner.view;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 
 
@@ -15,12 +14,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +23,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class NewEventActivity extends Activity
 {
@@ -37,6 +30,8 @@ public class NewEventActivity extends Activity
 	private EditText newTextField;
 	private EditText newVenueField;
 	private EditText newNotesField;
+	private EditText newLatField;
+	private EditText newLonField;
 	private DatePicker dPicker;
 	private TimePicker tPicker;
 	private Button pickAttendeesBtn;
@@ -55,6 +50,9 @@ public class NewEventActivity extends Activity
 		dPicker = (DatePicker) findViewById(R.id.date_picker);
 		tPicker = (TimePicker) findViewById(R.id.time_picker);
 		pickAttendeesBtn = (Button) findViewById(R.id.attendees_picker_button);
+		newLatField = (EditText) findViewById(R.id.new_latitude_field);
+		newLonField = (EditText) findViewById(R.id.new_longitude_field);
+		
 		final Intent myIntent = new Intent(this,ContactChooser.class);
 		getActionBar().setDisplayHomeAsUpEnabled(false);
         getActionBar().setHomeButtonEnabled(false);
@@ -87,6 +85,12 @@ public class NewEventActivity extends Activity
         	tPicker.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
         	tPicker.setCurrentMinute(cal.get(Calendar.MINUTE));
         	names = (ArrayList<String>) event.getAttendees();
+        	if (event.getLocation() != null)
+        	{
+        		String location[] = event.getLocation().split(" ");
+        		newLatField.setText(location[0]);
+        		newLonField.setText(location[1]);
+        	}
         }
       
 
@@ -172,6 +176,12 @@ public class NewEventActivity extends Activity
 			{
 				event.setAttendees(names);
 			}
+			/* Set location */
+			if ((newLatField.getText().toString().trim().length() > 0) 
+				&& (newLonField.getText().toString().trim().length() > 0))
+			{
+				event.setLocation(newLatField.getText().toString(), newLonField.getText().toString());
+			}
 		}
 		/* In case of editing existing event */
 		else
@@ -181,6 +191,7 @@ public class NewEventActivity extends Activity
 			((ConcreteEvent)event).setNotes(newNotesField.getText().toString());
 			event.setDate(getDateFromPicker());
 			event.setAttendees(names);
+			event.setLocation(newLatField.getText().toString(), newLonField.getText().toString());
 		}
 		setResult(NewEventActivity.CHANGED);
 	}

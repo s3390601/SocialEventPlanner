@@ -2,10 +2,6 @@ package com.s3390601.socialeventplanner.model;
 
 import java.util.List;
 
-import android.location.Address;
-import android.location.Location;
-import android.provider.ContactsContract;
-
 public interface Event {
 
 	public abstract long getDate();
@@ -17,8 +13,8 @@ public interface Event {
 	public abstract List<String> getAttendees();
 	public abstract void setAttendees(List<String> names);
 	public abstract String getId();
-	public abstract Address getLocation();
-	public abstract void setLocation(Address location);
+	public abstract String getLocation();
+	public abstract void setLocation(String lat, String lon);
 	public String getTimeAsString();
 	public String getDateAsString();
 }
