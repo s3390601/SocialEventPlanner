@@ -30,7 +30,7 @@ public class SingleEventActivity extends Activity {
 		getActionBar().setTitle(R.string.view_event);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		/* get event instance */
-		event = EventModel.getSingletonInstance().findEventByID(
+		event = EventModel.getSingletonInstance(this).findEventByID(
 				getIntent().getStringExtra(EventModel.EVENT_ID_EXTRA));
 		
 		/* Assign views */
@@ -85,7 +85,7 @@ public class SingleEventActivity extends Activity {
 	        		{
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							if (EventModel.getSingletonInstance().delEvent(event))
+							if (EventModel.getSingletonInstance(getApplicationContext()).delEvent(event))
 							{
 								Toast.makeText(getApplicationContext(), R.string.action_event_delete, Toast.LENGTH_SHORT).show();
 								finish();

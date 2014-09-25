@@ -24,10 +24,10 @@ public class MainActivity extends ListActivity {
 		setContentView(R.layout.activity_list_view);
         //testMethod();
         getActionBar().setDisplayHomeAsUpEnabled(false);
-  
+ 
         
         /* Populate list */
-        eventAdapter = new EventAdapter(this,0, EventModel.getSingletonInstance().getAllEvents());
+        eventAdapter = new EventAdapter(this,0, EventModel.getSingletonInstance(this).getAllEvents());
         setListAdapter(eventAdapter);
         
         
@@ -66,7 +66,7 @@ public class MainActivity extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		eventAdapter.clear();
-		eventAdapter.addAll(EventModel.getSingletonInstance().getAllEvents());
+		eventAdapter.addAll(EventModel.getSingletonInstance(this).getAllEvents());
 		eventAdapter.notifyDataSetChanged();
 	}
 	@Override
@@ -93,10 +93,24 @@ public class MainActivity extends ListActivity {
 	
 	public void testMethod()
 	{
-		EventModel e = EventModel.getSingletonInstance();
+		EventModel e = EventModel.getSingletonInstance(this);
 		Event test = new ConcreteEvent(2000000000,"Birthday");
 		test.setVenue("RMIT University");
 		test.setLocation("150", "250");
 		e.addEvent(test);
 	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		eventAdapter.notifyDataSetChanged();
+	}
+	@Override
+	protected void onPause() {
+		EventModel.getSingletonInstance(this).writeToDB();
+		super.onPause();
+	}
+	
+	
+	
+	
 }

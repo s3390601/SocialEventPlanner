@@ -13,8 +13,10 @@ public interface Event {
 	public abstract List<String> getAttendees();
 	public abstract void setAttendees(List<String> names);
 	public abstract String getId();
+	public abstract void setId(String id);
 	public abstract String getLocation();
 	public abstract void setLocation(String lat, String lon);
-	public String getTimeAsString();
-	public String getDateAsString();
+	public abstract void setLocation(String loc); 
+	public abstract String getTimeAsString();
+	public abstract String getDateAsString();
 }

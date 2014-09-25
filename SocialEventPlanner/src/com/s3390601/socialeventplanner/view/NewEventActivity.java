@@ -72,7 +72,7 @@ public class NewEventActivity extends Activity
         tPicker.setIs24HourView(true);
         
         /*Check if editing existing event*/
-        event = EventModel.getSingletonInstance().findEventByID(
+        event = EventModel.getSingletonInstance(this).findEventByID(
 				getIntent().getStringExtra(EventModel.EVENT_ID_EXTRA));
         if(event != null)
         {
@@ -158,7 +158,7 @@ public class NewEventActivity extends Activity
 		{
 			event = new ConcreteEvent(getDateFromPicker(),
 					newTextField.getText().toString());
-			EventModel.getSingletonInstance().addEvent(event);
+			EventModel.getSingletonInstance(this).addEvent(event);
 
 			/* Set Venue */
 			if (newVenueField.getText().toString().trim().length() > 0)

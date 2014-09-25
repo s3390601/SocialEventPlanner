@@ -7,6 +7,14 @@ import java.util.List;
 import java.util.SortedMap; 
 import java.util.TreeMap;
 
+import com.s3390601.socialeventplanner.db.MySQLiteOpenHelper;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
 public class EventModel
 {
 	public static final String EVENT_ID_EXTRA = "eventIDExtra";
@@ -15,29 +23,44 @@ public class EventModel
 	 * I used a single sorted map rather than 2 maps like the workshop
 	 * because there won't be too many events, therefore, we can
 	 * get eventID by a foreach loop each time ID is needed.*/
-	private SortedMap<Long, Event> sortedMap = new TreeMap<Long,Event>();
+	private SortedMap<String, Event> sortedMap = new TreeMap<String,Event>();
 	private static EventModel singletonInstance;
 	
-	protected EventModel()
+	private static MySQLiteOpenHelper helper;
+	private static SQLiteDatabase db;
+	private String[] allColumns={MySQLiteOpenHelper.COLUMN_ID, MySQLiteOpenHelper.COLUMN_TITLE, 
+			MySQLiteOpenHelper.COLUMN_VENUE, MySQLiteOpenHelper.COLUMN_LOCATION, 
+			MySQLiteOpenHelper.COLUMN_DATE, MySQLiteOpenHelper.COLUMN_NOTES };
+	
+	protected EventModel(Context c)
 	{
-		
+		helper = new MySQLiteOpenHelper(c);
+		try
+		{
+			db = helper.getWritableDatabase();
+		}
+		catch(SQLException SQLe)
+		{
+		}
+		readFromDB();
 	}
 	
+
 	public void addEvent(Event e)
 	{
-		sortedMap.put(e.getDate(), e);
+		sortedMap.put(e.getId(), e);
 	}
 	
 	public boolean delEvent(Event e)
 	{
-		return sortedMap.remove(e.getDate()) != null;
+		return sortedMap.remove(e.getId()) != null;
 	}
 	
-	public static EventModel getSingletonInstance()
+	public static EventModel getSingletonInstance(Context c)
 	{
 		if (singletonInstance == null)
 		{
-			singletonInstance = new EventModel();
+			singletonInstance = new EventModel(c);
 		}
 		return singletonInstance;
 	}
@@ -66,5 +89,44 @@ public class EventModel
 	{
 		return new ArrayList<Event>(sortedMap.values());
 	}
+	/* Writes all events from memory to db */
+	public void writeToDB()
+	{
+		db.delete(MySQLiteOpenHelper.EVENTS_TABLE_NAME, null, null);
+		for(Event e : sortedMap.values())
+		{
+			ContentValues values = new ContentValues();
+			values.put(MySQLiteOpenHelper.COLUMN_ID, e.getId());
+			values.put(MySQLiteOpenHelper.COLUMN_TITLE,e.getTitle());
+			values.put(MySQLiteOpenHelper.COLUMN_VENUE,e.getVenue());
+			values.put(MySQLiteOpenHelper.COLUMN_LOCATION,e.getLocation());
+			values.put(MySQLiteOpenHelper.COLUMN_DATE, e.getDate());
+			values.put(MySQLiteOpenHelper.COLUMN_NOTES,((ConcreteEvent) e).getNotes());
+			db.insert(MySQLiteOpenHelper.EVENTS_TABLE_NAME, null, values);
+		}
+	}
 	
+	/* Reads all events from DB to memory */
+	public void readFromDB()
+	{
+		Cursor cursor = db.query(MySQLiteOpenHelper.EVENTS_TABLE_NAME, allColumns, null, null, null, null, null);
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast())
+		{
+			Event e = cursorToEvent(cursor);
+			addEvent(e);
+			cursor.moveToNext();
+		}
+	}
+	
+	private Event cursorToEvent(Cursor c)
+	{
+		Event e = new ConcreteEvent(c.getLong(4),c.getString(1));
+		e.setId(c.getString(0));
+		e.setVenue(c.getString(2));
+		e.setLocation(c.getString(3));
+		((ConcreteEvent)e).setNotes(c.getString(5));
+		return e;
+	}
+
 }

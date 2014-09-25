@@ -63,13 +63,13 @@ public abstract class AbsEvent implements Event
 		this.attendees = names;
 	}
 	
-	public void removeAttendee(ContactsContract attendee)
-	{
-		this.attendees.remove(attendee);
-	}
-	
 	public String getId() {
 		return id;
+	}
+	
+	@Override
+	public void setId(String id) {
+		this.id = id;		
 	}
 	
 	public String getLocation()
@@ -80,6 +80,11 @@ public abstract class AbsEvent implements Event
 	public void setLocation(String lat, String lon)
 	{
 		this.location=lat+" "+lon;
+	}
+	
+	public void setLocation(String loc)
+	{
+		this.location=loc;
 	}
 	
 	public String getDateAsString()
@@ -93,5 +98,5 @@ public abstract class AbsEvent implements Event
 		DateFormat df = new SimpleDateFormat("HH:mm");
 		return df.format(this.date);
 	}
-	
+
 }
