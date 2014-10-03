@@ -24,11 +24,11 @@ public class MainActivity extends ListActivity {
 		setContentView(R.layout.activity_list_view);
         //testMethod();
         getActionBar().setDisplayHomeAsUpEnabled(false);
- 
         
         /* Populate list */
         eventAdapter = new EventAdapter(this,0, EventModel.getSingletonInstance(this).getAllEvents());
         setListAdapter(eventAdapter);
+        
         
         
     }
@@ -106,7 +106,7 @@ public class MainActivity extends ListActivity {
 	}
 	@Override
 	protected void onPause() {
-		EventModel.getSingletonInstance(this).writeToDB();
+		
 		super.onPause();
 	}
 	

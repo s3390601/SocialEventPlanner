@@ -192,6 +192,7 @@ public class NewEventActivity extends Activity
 			event.setDate(getDateFromPicker());
 			event.setAttendees(names);
 			event.setLocation(newLatField.getText().toString(), newLonField.getText().toString());
+			EventModel.getSingletonInstance(this).editEvent(event);
 		}
 		setResult(NewEventActivity.CHANGED);
 	}

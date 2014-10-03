@@ -19,6 +19,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	public final static String COLUMN_LOCATION="LOCATION";
 	public final static String COLUMN_DATE="DATE";
 	public final static String COLUMN_NOTES="NOTES";
+	public final static String COLUMN_ATTENDEES="ATTENDEES";
 	
 	/*Creating table */
 	private final static String EVENTS_TABLE_CREATE=
@@ -28,7 +29,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 					COLUMN_VENUE + " TEXT, "+
 					COLUMN_LOCATION + " TEXT, "+
 					COLUMN_DATE + " INT, "+
-					COLUMN_NOTES + " TEXT);";
+					COLUMN_NOTES + " TEXT," +
+					COLUMN_ATTENDEES + " TEXT);";
 					
 	public MySQLiteOpenHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
