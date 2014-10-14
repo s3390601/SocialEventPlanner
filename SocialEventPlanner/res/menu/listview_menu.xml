@@ -14,4 +14,9 @@
         android:title="@+string/action_add"
         android:icon="@drawable/ic_action_new" />
     
+    <item
+        android:id="@+id/action_threshold"
+        android:showAsAction="never"
+        android:title="@+string/action_threshold"/>
+    
 </menu>

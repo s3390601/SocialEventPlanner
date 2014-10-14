@@ -19,4 +19,6 @@ public interface Event {
 	public abstract void setLocation(String loc); 
 	public abstract String getTimeAsString();
 	public abstract String getDateAsString();
+	public abstract boolean getNotified();
+	public abstract void setNotified(boolean bool);
 }

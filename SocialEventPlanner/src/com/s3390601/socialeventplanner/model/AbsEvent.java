@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import android.provider.ContactsContract;
-
 public abstract class AbsEvent implements Event
 {
 	/* date is a long which stores both date and time */
@@ -17,6 +15,7 @@ public abstract class AbsEvent implements Event
 	private String venue;
 	private String location;
 	private List<String> attendees;
+	private boolean notified = false;
 	
 	public AbsEvent()
 	{
@@ -99,4 +98,13 @@ public abstract class AbsEvent implements Event
 		return df.format(this.date);
 	}
 
+	public boolean getNotified()
+	{
+		return this.notified;
+	}
+	
+	public void setNotified(boolean bool)
+	{
+		this.notified = bool;
+	}
 }

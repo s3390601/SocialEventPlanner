@@ -12,6 +12,7 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_event_save">Event Saved</string>
     <string name="action_event_delete">Event Deleted</string>
+    <string name="action_threshold">Change Threshold</string>
     <string name="confirm_delete">Are you sure you want to delete this event?</string>
     <string name="drawer_open">Nav Drawer opened</string>
     <string name="drawer_close">Nav Drawer closed</string>
@@ -56,5 +57,6 @@
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="title_activity_month">MonthActivity</string>
+    <string name="threshold">Threshold:</string>
 
 </resources>

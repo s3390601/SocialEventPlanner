@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,7 @@ public class SingleEventActivity extends Activity {
 		
 		getActionBar().setTitle(R.string.view_event);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		Log.i("SingleEventActivity", "ID: "+getIntent().getStringExtra(EventModel.EVENT_ID_EXTRA));
 		/* get event instance */
 		event = EventModel.getSingletonInstance(this).findEventByID(
 				getIntent().getStringExtra(EventModel.EVENT_ID_EXTRA));
@@ -99,6 +101,10 @@ public class SingleEventActivity extends Activity {
 	
 	public void loadValues()
 	{
+		if(event == null)
+		{
+			return;
+		}
 		/* set text fields */
 		titleView.setText(event.getTitle());
 		dateView.setText(event.getDateAsString());
