@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+      No use of resource files, all dimensions are hardcoded.
+      This is done for simplicity of using code from the demo.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp" >
+
+    <RelativeLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="2dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp" >
+
+        <TextView
+            android:id="@+id/img_featured"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="6dp"
+            android:background="#CC0000"
+            android:gravity="center"
+            android:text="RMIT"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_featured"
+            android:ellipsize="marquee"
+            android:maxLines="2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img_featured"
+            android:layout_below="@+id/txt_title"
+            android:layout_toRightOf="@+id/img_featured"
+            android:ellipsize="end"
+            android:textColor="#CC0000"
+            android:textSize="10sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
