@@ -35,9 +35,10 @@ public class MainActivity extends ListActivity {
 		setContentView(R.layout.activity_list_view);
         //testMethod();
         getActionBar().setDisplayHomeAsUpEnabled(false);
-        
+
         /* Populate list */
-        eventAdapter = new EventAdapter(this,0, EventModel.getSingletonInstance(this).getAllEvents());
+        EventModel emodel = EventModel.getSingletonInstance(this);
+        eventAdapter = new EventAdapter(this,0, emodel.getAllEvents());
         setListAdapter(eventAdapter);
         
         this.registerReceiver(this.cr,
@@ -100,9 +101,7 @@ public class MainActivity extends ListActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		eventAdapter.clear();
-		eventAdapter.addAll(EventModel.getSingletonInstance(this).getAllEvents());
-		eventAdapter.notifyDataSetChanged();
+		updateList();
 	}
 	@Override
     public void setTitle(CharSequence title) {
@@ -145,6 +144,12 @@ public class MainActivity extends ListActivity {
 		super.onPause();
 	}
 	
+	public void updateList()
+	{
+		eventAdapter.clear();
+		eventAdapter.addAll(EventModel.getSingletonInstance(this).getAllEvents());
+		eventAdapter.notifyDataSetChanged();
+	}
 	
 	
 	

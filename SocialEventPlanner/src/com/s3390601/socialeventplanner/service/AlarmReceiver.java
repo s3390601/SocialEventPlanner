@@ -28,7 +28,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver{
 			am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 			Intent i = new Intent(context, AlarmReceiver.class);
 			alarmIntent = PendingIntent.getBroadcast(context, 0, i, 0);
-			am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000*5, alarmIntent);
+			am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000*5*60, alarmIntent);
 		}
 	}
 	

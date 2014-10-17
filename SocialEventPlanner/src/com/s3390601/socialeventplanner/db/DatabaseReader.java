@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 import com.s3390601.socialeventplanner.model.ConcreteEvent;
 import com.s3390601.socialeventplanner.model.Event;
 import com.s3390601.socialeventplanner.model.EventModel;
+import com.s3390601.socialeventplanner.view.MainActivity;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -37,6 +38,8 @@ public class DatabaseReader extends AsyncTask<Void, Void, List<Event>> {
 			EventModel.getSingletonInstance(context).addEvent(e);
 		}
 		//Toast.makeText(context, "DB Read Success", Toast.LENGTH_LONG).show();
+		MainActivity ma = (MainActivity)context;
+		ma.updateList();
 		super.onPostExecute(result);
 	}
 
